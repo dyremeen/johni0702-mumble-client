@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "node_modules/.bin/babel -d lib/ src/",
+    "postinstall": "patch-package",
     "prepare": "npm run compile",
     "mocha": "node_modules/.bin/mocha --compilers js:babel-core/register",
     "test": "npm run compile && npm run mocha"
@@ -24,15 +25,17 @@
     "lib"
   ],
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-preset-es2015": "^6.14.0",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "~7.19.4",
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
     "mocha-standard": "^1.0.0",
+    "patch-package": "^6.4.7",
     "standard": "^8.0.0"
   },
   "dependencies": {
-    "drop-stream": "^0.1.1",
+    "drop-stream": "^1.0.0",
     "mumble-streams": "github:johni0702/mumble-streams#47b84d1",
     "promise": "^7.1.1",
     "reduplexer": "^1.1.0",
@@ -40,5 +43,10 @@
     "rtimer": "^0.1.0",
     "stats-incremental": "^1.2.1",
     "through2": "^2.0.2"
+  },
+  "overrides": {
+    "drop-stream": {
+      "readable-stream": "^4.2.0"
+    }
   }
 }

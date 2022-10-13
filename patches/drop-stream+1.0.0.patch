@@ -1,0 +1,9 @@
+--- a/node_modules/drop-stream/index.js
++++ b/node_modules/drop-stream/index.js
+@@ -1,5 +1,5 @@
+ 'use strict';
+-const Transform = require('readable-stream/transform');
++const Transform = require('readable-stream').Transform;
+
+ class DropStream extends Transform {
+ 	_transform(chunk, encoding, cb) {
