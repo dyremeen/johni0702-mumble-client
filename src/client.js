@@ -450,7 +450,10 @@ class MumbleClient extends EventEmitter {
     this._inFlightDataPings--
 
     let now = new Date().getTime()
-    let duration = now - payload.timestamp.toNumber()
+    // With current protobufjs timestamp may be a number.
+    // It's unclear whether this is always the case so the toNumber() support is kept.
+    const ts = payload.timestamp;
+    const duration = now - (typeof ts === 'number' ? ts : ts.toNumber());
     this._dataStats.update(duration)
     this.emit('dataPing', duration)
   }
