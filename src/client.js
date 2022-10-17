@@ -497,9 +497,9 @@ class MumbleClient extends EventEmitter {
     this.emit('message',
       this._userById[payload.actor],
       payload.message,
-      payload.session.map(id => this._userById[id]),
-      payload.channel_id.map(id => this._channelById[id]),
-      payload.tree_id.map(id => this._channelById[id])
+      (payload.session ?? []).map(id => this._userById[id]),
+      (payload.channel_id ?? []).map(id => this._channelById[id]),
+      (payload.tree_id ?? []).map(id => this._channelById[id])
     )
   }
 
